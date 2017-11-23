@@ -17,11 +17,13 @@ class codeEncrypt(object):
         arrayBlock = []
         # Read file in binary in blocks of 32 bytes
         for l in file:
-            if len(arrayBlock) <= 32:
-                arrayBlock += list(l)
-            else:
-                self.byteArray.append(arrayBlock)
-                arrayBlock = list(l)
+            for w in l:
+                if len(arrayBlock) < 32:
+                    arrayBlock += [w]
+                else:
+                    self.byteArray.append(arrayBlock)
+                    print (len(arrayBlock))
+                    arrayBlock = [w]
         # Add padding if needed
         if len(arrayBlock) < 32: 
             while len(arrayBlock) < 32:
@@ -42,6 +44,7 @@ class codeEncrypt(object):
 if __name__ == "__main__":
     if len(sys.argv) > 1:
         e = codeEncrypt(sys.argv[1], codeUtilities.generateKey(sys.argv[2]))
+        print (len(e.key))
         e.readFile()
         e.encryptFile()
         e.writeFile()
