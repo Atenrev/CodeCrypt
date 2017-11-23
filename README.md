@@ -19,6 +19,6 @@ where .\codeEncrypt is the python script, 'PATH\FILE.EXT' is the path to the fil
 
 The same goes with CodeDecrypt:
 	
-	.\codeEncrypt.py 'PATH\FILE.EXT' KEY
+	.\codeDecrypt.py 'PATH\FILE.EXT' KEY
 	
 where .\codeDecrypt is the python script, 'PATH\FILE.EXT' is the path to the crypt file that you want to decrypt and KEY is the symmetric key that you will use.
