@@ -15,8 +15,9 @@ class codeDecrypt(object):
     def readFile(self):
         file = open(self.data,"rb")
         arrayBlock = []
-        # Read file in binary in blocks of 32 bytes
+        # Read file in blocks of 32 bytes
         for l in file:
+            # Decode file
             decodedLine = list(base64.b64decode(l))
             for b in decodedLine:
                 if len(arrayBlock) < 32:
@@ -25,11 +26,11 @@ class codeDecrypt(object):
                     self.encryptedByteArray.append(arrayBlock)
                     arrayBlock = [b]
         file.close()
-
+    # Decrypt each block of 32 bytes
     def decryptFile(self):
         for i in self.encryptedByteArray:
             self.byteArray += ( codeUtilities.operate(i, self.key) )
-
+    # Write the result
     def writeFile(self):
         file = open("{0}.{1}".format("result","decrypt"),"wb")
         file.write(self.byteArray)
