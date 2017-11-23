@@ -1,10 +1,10 @@
 import sys
 import base64
-from ccutilities import *
+from codeUtilities import *
 
 usage = "Uso: {0} {1}".format(sys.argv[0], '[archivo]')
 
-class fileCipher(object):
+class codeEncrypt(object):
     
     def __init__(self, data, key):
         self.data = data
@@ -31,7 +31,7 @@ class fileCipher(object):
 
     def encryptFile(self):
         for i in self.byteArray:
-            self.encryptedByteArray += ( ccutilities.operate(i,self.key) )
+            self.encryptedByteArray += ( codeUtilities.operate(i,self.key) )
 
     def writeFile(self):
         file = open(self.data.split(".")[0] + ".crypt","wb")
@@ -41,7 +41,7 @@ class fileCipher(object):
 
 if __name__ == "__main__":
     if len(sys.argv) > 1:
-        e = fileCipher(sys.argv[1], ccutilities.generateKey(sys.argv[2]))
+        e = fileCipher(sys.argv[1], codeUtilities.generateKey(sys.argv[2]))
         e.readFile()
         e.encryptFile()
         e.writeFile()

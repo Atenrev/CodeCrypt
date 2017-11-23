@@ -1,7 +1,7 @@
 import sys
 import hashlib
 
-class ccutilities:
+class codeUtilities:
     # Generate the key from a string passed
     def generateKey (key):
         b = bytearray()
