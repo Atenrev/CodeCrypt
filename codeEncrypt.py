@@ -41,7 +41,7 @@ class codeEncrypt(object):
 
 if __name__ == "__main__":
     if len(sys.argv) > 1:
-        e = fileCipher(sys.argv[1], codeUtilities.generateKey(sys.argv[2]))
+        e = codeEncrypt(sys.argv[1], codeUtilities.generateKey(sys.argv[2]))
         e.readFile()
         e.encryptFile()
         e.writeFile()
