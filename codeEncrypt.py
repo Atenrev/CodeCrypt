@@ -22,7 +22,6 @@ class codeEncrypt(object):
                     arrayBlock += [w]
                 else:
                     self.byteArray.append(arrayBlock)
-                    print (len(arrayBlock))
                     arrayBlock = [w]
         # Add padding if needed
         if len(arrayBlock) < 32: 
@@ -44,9 +43,9 @@ class codeEncrypt(object):
 if __name__ == "__main__":
     if len(sys.argv) > 1:
         e = codeEncrypt(sys.argv[1], codeUtilities.generateKey(sys.argv[2]))
-        print (len(e.key))
         e.readFile()
         e.encryptFile()
         e.writeFile()
+        print ("Success")
     else:
         print (usage)
