@@ -35,16 +35,25 @@ class codeEncrypt(object):
             self.encryptedByteArray += ( codeUtilities.operate(i,self.key) )
 
     def writeFile(self):
-        file = open(self.data.split(".")[0] + ".crypt","wb")
+        file = open("{0}.{1}".format("result","crypt"),"wb")
         file.write(base64.b64encode(self.encryptedByteArray))
         file.close()
 
 
 if __name__ == "__main__":
     if len(sys.argv) > 1:
+        print ()
+        print ("\t---- Welcome to CodeCrypt 1.0 ----")
         e = codeEncrypt(sys.argv[1], codeUtilities.generateKey(sys.argv[2]))
+        print ()
+        print ("Reading file...")
         e.readFile()
+        print ()
+        print ("Proceeding to encrypt...")
         e.encryptFile()
+        print ("Done")
+        print ()
+        print ("Writing file...")
         e.writeFile()
         print ("Success")
     else:
