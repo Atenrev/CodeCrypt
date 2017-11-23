@@ -1,5 +1,5 @@
 # CodeCrypt
-Encrypt your files with a single command.
+Encrypt/Decrypt your files with a single command.
 
 ## How does it work?
 CodeEncrypt uses a symmetric algorithm based on XOR operation. 
