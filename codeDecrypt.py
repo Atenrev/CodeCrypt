@@ -25,6 +25,7 @@ class codeDecrypt(object):
                 else:
                     self.encryptedByteArray.append(arrayBlock)
                     arrayBlock = [b]
+            self.encryptedByteArray.append(arrayBlock)
         file.close()
     # Decrypt each block of 32 bytes
     def decryptFile(self):
