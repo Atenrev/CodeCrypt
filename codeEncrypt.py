@@ -9,52 +9,37 @@ class codeEncrypt(object):
     def __init__(self, data, key):
         self.data = data
         self.key = key
-        self.byteArray = []
-        self.encryptedByteArray = bytearray()
     
-    def readFile(self):
-        file = open(self.data,"rb")
+    def encryptFile(self):
+        ext = self.data.split(".")[len(self.data.split("."))-1]
+        inputFile = open(self.data,"rb")
+        finalFile = open("{0}.{1}".format("crypt",ext),"wb")
         arrayBlock = []
         # Read file in binary in blocks of 32 bytes
-        for l in file:
+        for l in inputFile:
             for w in l:
                 if len(arrayBlock) < 32:
                     arrayBlock += [w]
                 else:
-                    self.byteArray.append(arrayBlock)
+                    # Write the encrypted block in base64
+                    finalFile.write( self.encryptBlock(arrayBlock) )
                     arrayBlock = [w]
-        # Add padding if needed
-        if len(arrayBlock) < 32: 
-            while len(arrayBlock) < 32:
+        # Add padding if needed and write the last block
+        while len(arrayBlock) < 32:
                 arrayBlock += [0]
-        self.byteArray.append(arrayBlock)
-        file.close()
-
-    def encryptFile(self):
-        for i in self.byteArray:
-            self.encryptedByteArray += ( codeUtilities.operate(i,self.key) )
-
-    def writeFile(self):
-        file = open("{0}.{1}".format("result","crypt"),"wb")
-        file.write(base64.b64encode(self.encryptedByteArray))
-        file.close()
-
+        finalFile.write( self.encryptBlock(arrayBlock) )
+        inputFile.close()
+        finalFile.close()
+    # Encrypt a block of 32 bytes and encode it
+    def encryptBlock(self, block):
+        return base64.b64encode(codeUtilities.operate(block,self.key))
 
 if __name__ == "__main__":
     if len(sys.argv) > 1:
-        print ()
-        print ("\t---- Welcome to CodeCrypt 1.0 ----")
+        print ("\n\t---- Welcome to CodeCrypt 1.1 ----")
         e = codeEncrypt(sys.argv[1], codeUtilities.generateKey(sys.argv[2]))
-        print ()
-        print ("Reading file...")
-        e.readFile()
-        print ()
-        print ("Proceeding to encrypt...")
+        print ("\nProceeding to encrypt...")
         e.encryptFile()
-        print ("Done")
-        print ()
-        print ("Writing file...")
-        e.writeFile()
-        print ("Success")
+        print ("\nSuccess")
     else:
         print (usage)
