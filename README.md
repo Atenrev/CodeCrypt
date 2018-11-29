@@ -11,14 +11,24 @@ It first does a SHA-256 hash of the passed key and divides the bytes of the file
 CodeDecrypt works the same way  as CodeEncrypt but with the order inverted and writes the file in the in the directory where the script is being executed too.
 
 ## HowTo
+### Encrypting files
 To run CodeEncrypt use a command like this:
 
-	.\codeEncrypt.py 'PATH\FILE.EXT' KEY
+	.\codeEncrypt.py 'PATH\FILE.EXT' KEY file
 	
 where .\codeEncrypt is the python script, 'PATH\FILE.EXT' is the path to the file that you want to encrypt and KEY is the symmetric key that you will use.
 
 The same goes with CodeDecrypt:
 	
-	.\codeDecrypt.py 'PATH\FILE.EXT' KEY
+	.\codeDecrypt.py 'PATH\FILE.EXT' KEY file
 	
 where .\codeDecrypt is the python script, 'PATH\FILE.EXT' is the path to the crypt file that you want to decrypt and KEY is the symmetric key that you will use.
+
+### Encrypting some text
+To run CodeEncrypt use a command like this:
+
+	.\codeEncrypt.py 'message_to_encrypt' KEY
+
+The same goes with CodeDecrypt:
+	
+	.\codeDecrypt.py 'message_to_decrypt' KEY
